@@ -1,0 +1,13 @@
+= form_for(:activity, url: activities_path) do |f|
+  - if last_activity.try(:check_in?)
+    = f.hidden_field :activity_type_id, value: check_out_activity_type.id
+    = f.submit 'Check Out'
+  - else
+    = f.hidden_field :activity_type_id, value: check_in_activity_type.id
+    = f.submit 'Check In'
+
+%table
+  - activities.each do |activity|
+    %tr
+      %td= activity.time.strftime('%b %d %H:%M')
+      %td= activity.activity_type.name.humanize
