@@ -1,13 +1,26 @@
-= form_for(:activity, url: activities_path) do |f|
-  - if last_activity.try(:check_in?)
-    = f.hidden_field :activity_type_id, value: check_out_activity_type.id
-    = f.submit 'Check Out'
-  - else
-    = f.hidden_field :activity_type_id, value: check_in_activity_type.id
-    = f.submit 'Check In'
+- if current_employee.admin?
+  = form_for(:activity, url: activities_path) do |f|
+    %table.table
+      %th Name
+      %th Last Break
+      %th Option
 
-%table
-  - activities.each do |activity|
-    %tr
-      %td= activity.time.strftime('%b %d %H:%M')
-      %td= activity.activity_type.name.humanize
+      - employees.each do |employee|
+        %tr
+          %td= employee.name
+          %td
+          %td
+            - if last_activity.try(:check_in?)
+              = f.hidden_field :activity_type_id, value: check_out_activity_type.id
+              = f.submit 'Check Out', class: 'btn btn-danger'
+              = f.submit 'Take Break', class: 'btn btn-info'
+            - else
+              = f.hidden_field :activity_type_id, value: check_in_activity_type.id
+              = f.submit 'Check In', class: 'btn btn-success'
+          = employee.activities
+
+  
+
+
+Need dashboard: Who is here?
+Will say "Taken break/on break" since the last time the user checked in.
