@@ -1,0 +1,17 @@
+%p
+  = link_to 'New employee', { action: :new }, class: 'btn btn-default'
+
+%table.table
+  %tr
+    %th Name
+    %th Email
+    %th Status
+    %th
+  - employees.each do |employee|
+    %tr
+      %td= link_to employee.name, { action: :show, id: employee.id }
+      %td= employee.email
+      %td= employee.status
+      %td
+        = link_to 'Edit', { action: :edit, id: employee.id }, class: 'btn btn-default'
+        = link_to 'Delete', { action: :destroy, id: employee.id }, method: :delete, class: 'btn btn-danger'

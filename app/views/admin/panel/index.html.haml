@@ -1,0 +1,14 @@
+%h2 Active Employees
+
+%table.table
+  %tr
+    %td Name
+    %td Status
+    %td Taken break
+  - active_employees.each do |employee|
+    %tr
+      %td= employee.name
+      %td
+        = employee.status.humanize
+        = employee.last_activity.try(:time).try(:strftime, '%b %d %H:%M:%S')
+      %td= employee.has_taken_break? ? employee.last_break.time.strftime('%b %d %H:%M:%S') : 'No'

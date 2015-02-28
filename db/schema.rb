@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150226000213) do
+ActiveRecord::Schema.define(version: 20150228010037) do
 
   create_table "activities", force: true do |t|
     t.integer  "employee_id"
     t.integer  "activity_type_id"
     t.text     "notes"
-    t.time     "time"
+    t.datetime "time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

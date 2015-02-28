@@ -1,0 +1,7 @@
+%h1= employee.name
+
+%table.table
+  - employee.activities.order('time desc').each do |activity|
+    %tr
+      %td= activity.time.strftime('%b %d %H:%M:%S')
+      %td= activity.activity_type.name.humanize

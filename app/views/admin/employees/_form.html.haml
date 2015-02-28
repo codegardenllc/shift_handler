@@ -1,0 +1,12 @@
+.col-md-6
+  = form_for [:admin, employee] do |f|
+    .form-group
+      = f.text_field :name, class: 'form-control', placeholder: 'Name'
+    .form-group
+      = f.text_field :email, class: 'form-control', placeholder: 'Email'
+    .form-group
+      = f.password_field :password, class: 'form-control', placeholder: 'New password'
+    .form-group
+      = f.check_box :admin
+    .form-group
+      = f.submit nil, class: 'btn btn-success'
